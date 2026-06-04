@@ -12,7 +12,7 @@ export const SITE = {
 
   // 👉 Link social / contatto
   telegramUrl: "https://t.me/HazeBomb10",
-  instagramUrl: "https://instagram.com/your_profile",
+  instagramUrl: "https://www.instagram.com/haze.bomb?igsh=b2V3ZHhrc2Vlb2o1",
 
   // 👉 Testi della pagina di accesso (age gate)
   ageGate: {
