@@ -25,19 +25,21 @@ function AgeGate({ onEnter }: { onEnter: () => void }) {
   const g = SITE.ageGate;
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="card-surface ring-gold rounded-2xl w-full max-w-md p-8 sm:p-10 text-center">
+      <div className="card-surface ring-gold rounded-2xl w-full max-w-lg p-6 sm:p-8 text-center">
         <img
           src={SITE.logoUrl}
           alt={`${SITE.brandName} logo`}
           className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full object-cover glow-gold"
         />
         <div className="my-6 h-px w-2/3 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent" />
-        <p className="text-xs tracking-[0.35em] text-muted-foreground uppercase">{g.badge}</p>
+        <p className="text-xs tracking-[0.35em] text-primary uppercase font-bold">{g.badge}</p>
         <h1 className="display mt-3 text-4xl sm:text-5xl leading-none">
           <span className="block text-foreground">{g.titleTop}</span>
           <span className="block text-gradient-gold">{g.titleBottom}</span>
         </h1>
-        <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{g.description}</p>
+        <p className="mt-5 text-xs sm:text-[13px] text-muted-foreground leading-relaxed whitespace-pre-line text-left max-h-64 overflow-y-auto pr-1">
+          {g.description}
+        </p>
 
         <button
           onClick={onEnter}
@@ -56,6 +58,7 @@ function AgeGate({ onEnter }: { onEnter: () => void }) {
     </main>
   );
 }
+
 
 /* -------------------------------- SHOP -------------------------------- */
 function Shop() {
