@@ -164,38 +164,76 @@ function Catalog() {
 }
 
 function ProductCard({ product }: { product: Product }) {
+  const [open, setOpen] = useState(false);
   return (
-    <a
-      href={SITE.telegramUrl}
-      target="_blank"
-      rel="noreferrer"
-      className="card-surface rounded-xl overflow-hidden group transition hover:-translate-y-1 hover:glow-gold"
-    >
-      <div className="relative aspect-square bg-muted">
-        {product.video ? (
-          <video src={product.video} className="w-full h-full object-cover" muted playsInline />
-        ) : (
-          <img
-            src={product.image}
-            alt={product.name}
-            loading="lazy"
-            className="w-full h-full object-cover"
-          />
-        )}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold group-hover:scale-110 transition">
-            <Play className="w-5 h-5 fill-current ml-0.5" />
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="card-surface rounded-xl overflow-hidden group transition hover:-translate-y-1 hover:glow-gold text-left w-full"
+      >
+        <div className="relative aspect-square bg-muted">
+          {product.video ? (
+            <video src={product.video} className="w-full h-full object-cover" muted playsInline />
+          ) : (
+            <img
+              src={product.image}
+              alt={product.name}
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          )}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold group-hover:scale-110 transition">
+              <Play className="w-5 h-5 fill-current ml-0.5" />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="p-3">
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="text-sm font-bold truncate">{product.name}</h3>
-          <span className="text-primary font-bold text-sm">€{product.price}</span>
+        <div className="p-3">
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-sm font-bold truncate">{product.name}</h3>
+            <span className="text-primary font-bold text-sm">€{product.price}</span>
+          </div>
+          <p className="text-xs text-muted-foreground mt-0.5">{product.weight}</p>
         </div>
-        <p className="text-xs text-muted-foreground mt-0.5">{product.weight}</p>
-      </div>
-    </a>
+      </button>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setOpen(false)}
+        >
+          <button
+            type="button"
+            aria-label="Chiudi"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold"
+            onClick={() => setOpen(false)}
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <div className="w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
+            {product.video ? (
+              <video
+                src={product.video}
+                className="w-full max-h-[80vh] rounded-xl"
+                controls
+                autoPlay
+                playsInline
+              />
+            ) : (
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full max-h-[80vh] object-contain rounded-xl"
+              />
+            )}
+            <p className="mt-3 text-center text-sm font-bold text-foreground">
+              {product.name} · €{product.price}
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
