@@ -99,6 +99,20 @@ function Header() {
   );
 }
 
+/* ------------------------------ ATTENTION BANNER ------------------------------ */
+/* 👉 MODIFICA QUI il testo/colore del banner di avviso (visibile anche su mobile) */
+function AttentionBanner() {
+  return (
+    <div className="w-full bg-gradient-to-r from-destructive/30 via-primary/20 to-destructive/30 border-y border-primary/40">
+      <div className="max-w-6xl mx-auto px-4 py-2.5 text-center">
+        <p className="display text-base sm:text-xl tracking-[0.2em] text-gradient-gold">
+          ⚠️ ATTENZIONE ⚠️
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section id="top" className="px-4 sm:px-6 pt-10">
