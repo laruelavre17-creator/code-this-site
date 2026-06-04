@@ -45,7 +45,30 @@ export const SITE = {
   year: 2026,
 };
 
-// 👉 MODIFICA QUI: lista prodotti (image OPPURE video mp4)
+// ============================================================
+// 👉 MODIFICA QUI: LISTA PRODOTTI (immagine OPPURE video)
+// ------------------------------------------------------------
+// Ogni prodotto è un oggetto { ... } separato da virgola.
+//
+//   • id      → identificativo univoco (qualsiasi stringa)
+//   • name    → nome che appare sotto la card (puoi usare emoji 🇲🇦🎁🇺🇸)
+//   • weight  → peso/quantità mostrato sotto il nome
+//   • price   → prezzo numerico in € (senza simbolo)
+//   • image   → URL immagine (in /public oppure link esterno)
+//   • video   → URL video .mp4  ⚠️ SE PRESENTE, sostituisce l'immagine
+//
+// ➕ PER AGGIUNGERE un prodotto: copia un blocco { ... }, e incollalo
+//    nella lista. Ricordati la virgola alla fine.
+//
+// ➖ PER RIMUOVERE un prodotto: cancella il suo blocco { ... }, virgola inclusa.
+//
+// 🎬 PER METTERE UN VIDEO al posto dell'immagine: aggiungi la riga
+//      video: "https://link-al-tuo-video.mp4",
+//    e (opzionale) togli/lascia la riga `image`.
+//
+// 🚫 PER TOGLIERE IL VIDEO: cancella la riga `video: "..."` — tornerà
+//    a mostrare l'immagine.
+// ============================================================
 export type Product = {
   id: string;
   name: string;
@@ -58,10 +81,11 @@ export type Product = {
 export const PRODUCTS: Product[] = [
   {
     id: "dry-ma",
-    name: "DRY 🇲🇦",
+    name: "DRY 🇲🇦", // 👉 cambia il nome qui
     weight: "100 g",
     price: 400,
     image: "https://images.unsplash.com/photo-1536819114556-1c10b6b6f7f1?w=600",
+    // video: "https://esempio.com/video.mp4", // 👉 scommenta per usare un video
   },
   {
     id: "super-boof",
