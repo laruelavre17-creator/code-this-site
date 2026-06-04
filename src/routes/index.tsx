@@ -215,19 +215,12 @@ function Footer() {
     <footer className="border-t border-border/60 mt-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <img src={SITE.logoUrl} alt="" className="w-8 h-8 rounded-full object-cover" />
-        <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground text-center">
-          © {SITE.year} · Solo Membri · 18+
+        {/* 👉 MODIFICA QUI il testo del footer */}
+        <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground text-center font-bold">
+          © {SITE.year} · PRODOTTI IMMAGINARI
         </p>
         <div className="flex items-center gap-2">
-          <a
-            href={SITE.telegramUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Telegram"
-            className="w-9 h-9 rounded-full bg-[#29b6f6] text-white flex items-center justify-center hover:brightness-110 transition"
-          >
-            <Send className="w-4 h-4" />
-          </a>
+          {/* 👉 Social: solo Instagram */}
           <a
             href={SITE.instagramUrl}
             target="_blank"
