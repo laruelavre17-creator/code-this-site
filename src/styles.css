@@ -120,12 +120,40 @@
 
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
+  * { border-color: var(--color-border); }
+
+  html, body { background: var(--color-background); color: var(--color-foreground); }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-image:
+      var(--gradient-radial-amber),
+      var(--gradient-radial-crimson),
+      radial-gradient(80% 60% at 50% 0%, color-mix(in oklab, var(--primary) 8%, transparent), transparent 70%);
+    background-attachment: fixed;
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+
+  h1, h2, h3, .display {
+    font-family: "Bebas Neue", "Anton", Impact, sans-serif;
+    letter-spacing: 0.02em;
   }
 }
+
+@layer utilities {
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px color-mix(in oklab, var(--primary) 40%, transparent);
+  }
+  .glow-gold { box-shadow: var(--shadow-gold); }
+  .glow-crimson { box-shadow: var(--shadow-crimson); }
+  .ring-gold { box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 50%, transparent), 0 0 60px -10px color-mix(in oklab, var(--primary) 50%, transparent); }
+  .card-surface {
+    background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), color-mix(in oklab, var(--card) 70%, transparent));
+    border: 1px solid color-mix(in oklab, var(--primary) 18%, transparent);
+    backdrop-filter: blur(6px);
+  }
+}
+
