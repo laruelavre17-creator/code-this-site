@@ -65,7 +65,6 @@ function Shop() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <AttentionBanner />
       <main className="flex-1">
         <Hero />
         <Catalog />
@@ -99,19 +98,8 @@ function Header() {
   );
 }
 
-/* ------------------------------ ATTENTION BANNER ------------------------------ */
-/* 👉 MODIFICA QUI il testo/colore del banner di avviso (visibile anche su mobile) */
-function AttentionBanner() {
-  return (
-    <div className="w-full bg-gradient-to-r from-destructive/30 via-primary/20 to-destructive/30 border-y border-primary/40">
-      <div className="max-w-6xl mx-auto px-4 py-2.5 text-center">
-        <p className="display text-base sm:text-xl tracking-[0.2em] text-gradient-gold">
-          ⚠️ ATTENZIONE ⚠️
-        </p>
-      </div>
-    </div>
-  );
-}
+
+
 
 function Hero() {
   return (
@@ -216,19 +204,12 @@ function Footer() {
     <footer className="border-t border-border/60 mt-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <img src={SITE.logoUrl} alt="" className="w-8 h-8 rounded-full object-cover" />
-        <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground text-center">
-          © {SITE.year} · Solo Membri · 18+
+        {/* 👉 MODIFICA QUI il testo del footer */}
+        <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground text-center font-bold">
+          © {SITE.year} · PRODOTTI IMMAGINARI
         </p>
         <div className="flex items-center gap-2">
-          <a
-            href={SITE.telegramUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Telegram"
-            className="w-9 h-9 rounded-full bg-[#29b6f6] text-white flex items-center justify-center hover:brightness-110 transition"
-          >
-            <Send className="w-4 h-4" />
-          </a>
+          {/* 👉 Social: solo Instagram */}
           <a
             href={SITE.instagramUrl}
             target="_blank"
