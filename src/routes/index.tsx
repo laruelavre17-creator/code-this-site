@@ -77,13 +77,16 @@ function Header() {
     <header className="sticky top-0 z-30 backdrop-blur-md bg-background/60 border-b border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
-          <img src={SITE.logoUrl} alt="" className="w-9 h-9 rounded-full object-cover" />
+          <img src={SITE.logoUrl} alt="" className="w-9 h-9 rounded-full object-cover ring-1 ring-primary/50" />
+          <span className="display text-xl text-gradient-gold tracking-wider hidden sm:inline">
+            {SITE.brandName.toUpperCase()}
+          </span>
         </a>
         <a
           href={SITE.telegramUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold tracking-wider bg-[#29b6f6] text-white hover:brightness-110 transition"
+          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold tracking-wider bg-accent text-accent-foreground hover:brightness-110 transition glow-crimson"
         >
           <Send className="w-4 h-4" /> TELEGRAM
         </a>
@@ -94,37 +97,39 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="px-4 sm:px-6 pt-8">
-      <div className="max-w-6xl mx-auto card-surface rounded-3xl overflow-hidden">
-        <div className="grid md:grid-cols-2 gap-8 items-center p-8 sm:p-12 min-h-[480px] relative">
-          <div className="relative z-10">
-            <p className="display text-4xl sm:text-5xl text-muted-foreground/50 leading-none">
-              {SITE.hero.overline.toUpperCase()}
-            </p>
-            <h1 className="display text-5xl sm:text-7xl leading-none text-gradient-gold mt-1">
-              {SITE.hero.title.toUpperCase()}
-            </h1>
-            <a
-              href="#catalogo"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-xs px-5 py-3 glow-gold hover:brightness-110 transition"
-            >
-              {SITE.hero.ctaLabel.toUpperCase()} <ArrowRight className="w-4 h-4" />
-            </a>
+    <section id="top" className="px-4 sm:px-6 pt-10">
+      <div className="max-w-5xl mx-auto card-surface rounded-3xl overflow-hidden relative">
+        <div className="absolute inset-0 opacity-60 pointer-events-none"
+             style={{ background: "radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--primary) 30%, transparent), transparent 70%)" }} />
+        <div className="relative flex flex-col items-center text-center px-6 sm:px-12 py-16 sm:py-20">
+          <img
+            src={SITE.logoUrl}
+            alt={SITE.brandName}
+            className="w-44 h-44 sm:w-56 sm:h-56 rounded-full object-cover glow-gold ring-1 ring-primary/40"
+          />
+          <p className="display mt-8 text-3xl sm:text-4xl text-muted-foreground/60 leading-none">
+            {SITE.hero.overline.toUpperCase()}
+          </p>
+          <h1 className="display text-6xl sm:text-8xl leading-[0.95] text-gradient-gold mt-2">
+            {SITE.hero.title.toUpperCase()}
+          </h1>
+          <div className="mt-6 flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
+            <span className="h-px w-10 bg-primary/60" />
+            <span>Drop · Privato · 18+</span>
+            <span className="h-px w-10 bg-primary/60" />
           </div>
-          <div className="flex items-center justify-center">
-            <img
-              src={SITE.logoUrl}
-              alt={SITE.brandName}
-              className="w-56 h-56 sm:w-72 sm:h-72 rounded-full object-cover glow-gold"
-            />
-          </div>
+          <a
+            href="#catalogo"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-xs px-6 py-3.5 glow-gold hover:brightness-110 transition"
+          >
+            {SITE.hero.ctaLabel.toUpperCase()} <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-function Catalog() {
   return (
     <section id="catalogo" className="px-4 sm:px-6 py-16">
       <div className="max-w-6xl mx-auto">
