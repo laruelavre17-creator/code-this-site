@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Send, Instagram, ArrowRight, Play, ArrowUp } from "lucide-react";
+import { Send, Instagram, ArrowRight, Play, ArrowUp, X } from "lucide-react";
 import { SITE, PRODUCTS, type Product } from "@/config/site";
 
 export const Route = createFileRoute("/")({
