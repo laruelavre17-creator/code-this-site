@@ -80,46 +80,10 @@ export type Product = {
 
 export const PRODUCTS: Product[] = [
   {
-    id: "dry-ma",
-    name: "DRY 🇲🇦", // 👉 cambia il nome qui
-    weight: "100 g",
-    price: 400,
-    image: "https://images.unsplash.com/photo-1536819114556-1c10b6b6f7f1?w=600",
-    // video: "https://esempio.com/video.mp4", // 👉 scommenta per usare un video
-  },
-  {
     id: "super-boof",
     name: "SUPER BOOF 🎁",
     weight: "5 g",
     price: 45,
     image: "https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=600",
-  },
-  {
-    id: "ice-o-lator",
-    name: "ICE O LATOR (1 lavaggio)",
-    weight: "2 g",
-    price: 50,
-    image: "https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=600",
-  },
-  {
-    id: "pop-stong",
-    name: "POP STRONG 🇺🇸 H",
-    weight: "5 g",
-    price: 60,
-    image: "https://images.unsplash.com/photo-1536593018854-7d6ed5e89bbf?w=600",
-  },
-  {
-    id: "special-pink",
-    name: "SPECIAL PINK 🇺🇸 L",
-    weight: "5 g",
-    price: 60,
-    image: "https://images.unsplash.com/photo-1585516586073-3219f81bee84?w=600",
-  },
-  {
-    id: "gelato-44",
-    name: "GELATO 44 🎁🇪🇸 R",
-    weight: "5 g",
-    price: 45,
-    image: "https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600",
   },
 ];
