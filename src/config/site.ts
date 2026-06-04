@@ -4,55 +4,54 @@
 // ============================================================
 
 export const SITE = {
-  // 👉 Nome del brand (mostrato nel footer e nei meta tag)
-  brandName: "Smoke Gas Bomb",
+  // 👉 Nome del brand
+  brandName: "Haze Bomb",
 
-  // 👉 URL del logo (puoi caricare un'immagine in /public e usare "/logo.jpg")
+  // 👉 URL del logo (file in /public oppure URL esterno)
   logoUrl: "/logo.jpg",
 
   // 👉 Link social / contatto
-  telegramUrl: "https://t.me/your_channel",
+  telegramUrl: "https://t.me/HazeBomb10",
   instagramUrl: "https://instagram.com/your_profile",
 
   // 👉 Testi della pagina di accesso (age gate)
   ageGate: {
-    badge: "Membri 18+",
-    titleTop: "ACCESSO",
-    titleBottom: "RISERVATO",
+    badge: "Solo +18",
+    titleTop: "INGRESSO",
+    titleBottom: "PRIVATO",
     description:
-      "Questa è una collezione su invito. Verifica di essere maggiorenne per accedere allo shop.",
+      "Collezione su invito riservata agli adulti. Conferma di avere più di 18 anni per entrare nello shop.",
     enterLabel: "Entra nello Shop",
-    exitLabel: "Esci",
+    exitLabel: "Annulla",
     exitUrl: "https://www.google.com/",
   },
 
   // 👉 Hero principale dello shop
   hero: {
-    overline: "Premium",
+    overline: "Top Shelf",
     title: "Selezioni",
-    ctaLabel: "Visualizza il catalogo",
+    ctaLabel: "Esplora il catalogo",
   },
 
   // 👉 Sezione catalogo
   catalog: {
-    overline: "Stock",
-    title: "Limitato",
-    subtitle: "Qualità prima della quantità",
+    overline: "Drop",
+    title: "Esclusivo",
+    subtitle: "Scelta selezionata · disponibilità limitata",
   },
 
-  // 👉 Anno mostrato nel footer
+  // 👉 Anno nel footer
   year: 2026,
 };
 
-// 👉 MODIFICA QUI: lista prodotti
-// Per ogni prodotto puoi mettere image (URL immagine) oppure video (URL video mp4).
+// 👉 MODIFICA QUI: lista prodotti (image OPPURE video mp4)
 export type Product = {
   id: string;
   name: string;
-  weight: string;     // es. "5 g", "100 g"
-  price: number;      // in EUR
-  image?: string;     // URL immagine prodotto
-  video?: string;     // (opzionale) URL video mp4 prodotto
+  weight: string;
+  price: number;
+  image?: string;
+  video?: string;
 };
 
 export const PRODUCTS: Product[] = [
@@ -79,7 +78,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "pop-stong",
-    name: "POP STONG 🇺🇸 H",
+    name: "POP STRONG 🇺🇸 H",
     weight: "5 g",
     price: 60,
     image: "https://images.unsplash.com/photo-1536593018854-7d6ed5e89bbf?w=600",
