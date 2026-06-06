@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Send, Clock, MapPin, Package } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { MapPin, Package, Send } from "lucide-react";
 import { SITE, CATEGORIES, type Category } from "@/config/site";
+import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,55 +18,29 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <SiteHeader />
       <main className="flex-1">
         <Hero />
         <Categories />
-        <DeliveryArea />
         <OrderInfo />
+        <DeliveryArea />
         <CTA />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
-  );
-}
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-30 backdrop-blur-md bg-background/70 border-b border-border/60">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
-          <img
-            src={SITE.logoUrl}
-            alt=""
-            className="w-10 h-10 rounded-full object-cover ring-1 ring-primary/60"
-          />
-          <span className="display text-lg sm:text-xl text-gradient-gold tracking-wider">
-            {SITE.brandName}
-          </span>
-        </a>
-        <a
-          href={SITE.telegramUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2 text-xs font-bold tracking-wider bg-primary text-primary-foreground hover:brightness-110 transition glow-gold"
-        >
-          <Send className="w-4 h-4" /> TELEGRAM
-        </a>
-      </div>
-    </header>
   );
 }
 
 function Hero() {
   return (
     <section id="top" className="relative px-4 sm:px-6 pt-12 sm:pt-20 pb-10">
-      <div className="absolute inset-0 pointer-events-none opacity-70"
-        style={{ background: "radial-gradient(50% 40% at 50% 30%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%)" }} />
+      <div
+        className="absolute inset-0 pointer-events-none opacity-70"
+        style={{ background: "radial-gradient(50% 40% at 50% 30%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%)" }}
+      />
       <div className="relative max-w-3xl mx-auto flex flex-col items-center text-center">
         <div className="relative">
-          <div className="absolute inset-0 rounded-full blur-3xl opacity-60"
-            style={{ background: "var(--gradient-gold)" }} />
+          <div className="absolute inset-0 rounded-full blur-3xl opacity-60" style={{ background: "var(--gradient-gold)" }} />
           <img
             src={SITE.logoUrl}
             alt={SITE.brandName}
@@ -101,16 +76,17 @@ function Categories() {
 function CategoryCard({ c }: { c: Category }) {
   const isGold = c.accent === "gold";
   return (
-    <a
-      href={SITE.telegramUrl}
-      target="_blank"
-      rel="noreferrer"
+    <Link
+      to="/categoria/$category"
+      params={{ category: c.id }}
       className="card-surface rounded-2xl p-8 text-center group transition hover:-translate-y-1"
       style={{
         boxShadow: isGold
           ? "0 10px 60px -20px color-mix(in oklab, var(--primary) 70%, transparent)"
           : "0 10px 60px -20px color-mix(in oklab, var(--accent) 60%, transparent)",
-        borderColor: isGold ? "color-mix(in oklab, var(--primary) 50%, transparent)" : "color-mix(in oklab, var(--accent) 45%, transparent)",
+        borderColor: isGold
+          ? "color-mix(in oklab, var(--primary) 50%, transparent)"
+          : "color-mix(in oklab, var(--accent) 45%, transparent)",
       }}
     >
       <h3
@@ -125,7 +101,37 @@ function CategoryCard({ c }: { c: Category }) {
       <p className="mt-3 text-xs sm:text-sm text-muted-foreground tracking-wide">
         {c.description}
       </p>
-    </a>
+      <p className="mt-4 text-[10px] tracking-[0.3em] uppercase text-primary/80">
+        Vedi prodotti →
+      </p>
+    </Link>
+  );
+}
+
+function OrderInfo() {
+  const items = [
+    { icon: Package, title: "Minimo ordine", desc: "In base alla distanza. Es: 10 km = 100€ spesa min." },
+    { icon: MapPin, title: "Peso + Zona", desc: "Servizio delivery calcolato in base a distanza, peso e rischio." },
+  ];
+  return (
+    <section className="px-4 sm:px-6 py-10">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="display text-3xl sm:text-4xl text-gradient-gold text-center mb-8">
+          ORGANIZZA QUI IL TUO DELIVERY
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {items.map((it) => (
+            <div key={it.title} className="card-surface rounded-2xl p-6 text-center">
+              <div className="w-12 h-12 mx-auto rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center">
+                <it.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="mt-4 display text-xl text-primary tracking-wider">{it.title}</h3>
+              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{it.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -137,49 +143,22 @@ function DeliveryArea() {
           Area Consegna
         </p>
         <h2 className="display text-4xl sm:text-6xl leading-none text-gradient-gold mt-2">
-          VOLIAMO IN TUTTA LA CAMPANIA
+          CONSEGNA IN TUTTA ITALIA 🇮🇹
         </h2>
         <div className="mt-8 flex items-center justify-center">
           <div className="relative">
-            <div className="absolute inset-0 rounded-full blur-2xl opacity-50"
-              style={{ background: "var(--gradient-gold)" }} />
-            <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full border border-primary/40 flex items-center justify-center"
-              style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%)" }}>
+            <div className="absolute inset-0 rounded-full blur-2xl opacity-50" style={{ background: "var(--gradient-gold)" }} />
+            <div
+              className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full border border-primary/40 flex items-center justify-center"
+              style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%)" }}
+            >
               <MapPin className="w-20 h-20 text-primary" strokeWidth={1.5} />
             </div>
           </div>
         </div>
-        <p className="mt-6 text-xs tracking-[0.25em] uppercase text-muted-foreground">
-          Napoli · Caserta · Salerno · Avellino · Benevento
+        <p className="mt-6 text-xs sm:text-sm tracking-[0.25em] uppercase text-muted-foreground">
+          Nord · Centro · Sud · Isole · Spedizione discreta
         </p>
-      </div>
-    </section>
-  );
-}
-
-function OrderInfo() {
-  const items = [
-    { icon: Clock, title: "Ordina entro 15:00", desc: "Per consegna in giornata, ordina entro le ore 15:00." },
-    { icon: Package, title: "Minimo ordine", desc: "In base alla distanza. Es: 10 km = 100€ spesa min." },
-    { icon: MapPin, title: "Peso + Zona", desc: "Servizio delivery calcolato in base a distanza, peso e rischio." },
-  ];
-  return (
-    <section className="px-4 sm:px-6 py-10">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="display text-3xl sm:text-4xl text-gradient-gold text-center mb-8">
-          ORGANIZZA QUI IL TUO DELIVERY
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {items.map((it) => (
-            <div key={it.title} className="card-surface rounded-2xl p-6 text-center">
-              <div className="w-12 h-12 mx-auto rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center">
-                <it.icon className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="mt-4 display text-xl text-primary tracking-wider">{it.title}</h3>
-              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{it.desc}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -205,27 +184,5 @@ function CTA() {
         </a>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-border/60 mt-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-        <img src={SITE.logoUrl} alt="" className="w-8 h-8 rounded-full object-cover" />
-        <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground text-center font-bold">
-          © {SITE.year} {SITE.brandName} · Sito dimostrativo
-        </p>
-        <a
-          href={SITE.telegramUrl}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Telegram"
-          className="w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold hover:brightness-110 transition"
-        >
-          <Send className="w-4 h-4" />
-        </a>
-      </div>
-    </footer>
   );
 }
