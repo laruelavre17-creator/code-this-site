@@ -1,95 +1,54 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Send, Instagram, ArrowRight, Play, ArrowUp, X } from "lucide-react";
-import { SITE, PRODUCTS, type Product } from "@/config/site";
+import { Send, Clock, MapPin, Package } from "lucide-react";
+import { SITE, CATEGORIES, type Category } from "@/config/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${SITE.brandName} — Accesso Riservato` },
-      { name: "description", content: "Collezione premium su invito. Solo membri 18+." },
-      { property: "og:title", content: `${SITE.brandName} — Accesso Riservato` },
-      { property: "og:description", content: "Collezione premium su invito. Solo membri 18+." },
+      { title: `${SITE.brandName} — Top Shelf Delivery` },
+      { name: "description", content: SITE.tagline },
+      { property: "og:title", content: SITE.brandName },
+      { property: "og:description", content: SITE.tagline },
     ],
   }),
   component: Index,
 });
 
 function Index() {
-  const [entered, setEntered] = useState(false);
-  return entered ? <Shop /> : <AgeGate onEnter={() => setEntered(true)} />;
-}
-
-/* ------------------------------ AGE GATE ------------------------------ */
-function AgeGate({ onEnter }: { onEnter: () => void }) {
-  const g = SITE.ageGate;
-  return (
-    <main className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="card-surface ring-gold rounded-2xl w-full max-w-lg p-6 sm:p-8 text-center">
-        <img
-          src={SITE.logoUrl}
-          alt={`${SITE.brandName} logo`}
-          className="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full object-cover glow-gold"
-        />
-        <div className="my-6 h-px w-2/3 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent" />
-        <p className="text-xs tracking-[0.35em] text-primary uppercase font-bold">{g.badge}</p>
-        <h1 className="display mt-3 text-4xl sm:text-5xl leading-none">
-          <span className="block text-foreground">{g.titleTop}</span>
-          <span className="block text-gradient-gold">{g.titleBottom}</span>
-        </h1>
-        <p className="mt-5 text-xs sm:text-[13px] text-muted-foreground leading-relaxed whitespace-pre-line text-left max-h-64 overflow-y-auto pr-1">
-          {g.description}
-        </p>
-
-        <button
-          onClick={onEnter}
-          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold hover:brightness-110 transition"
-        >
-          {g.enterLabel.toUpperCase()}
-        </button>
-        <a
-          href={g.exitUrl}
-          className="mt-3 block w-full rounded-full border border-destructive/50 text-destructive font-bold tracking-wider text-sm py-3 hover:bg-destructive/10 transition"
-          style={{ boxShadow: "0 8px 30px -10px oklch(0.55 0.24 27 / 0.5)" }}
-        >
-          {g.exitLabel.toUpperCase()}
-        </a>
-      </div>
-    </main>
-  );
-}
-
-
-/* -------------------------------- SHOP -------------------------------- */
-function Shop() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
         <Hero />
-        <Catalog />
+        <Categories />
+        <DeliveryArea />
+        <OrderInfo />
+        <CTA />
       </main>
       <Footer />
-      <BackToTop />
     </div>
   );
 }
 
 function Header() {
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-md bg-background/60 border-b border-border/60">
+    <header className="sticky top-0 z-30 backdrop-blur-md bg-background/70 border-b border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
-          <img src={SITE.logoUrl} alt="" className="w-9 h-9 rounded-full object-cover ring-1 ring-primary/50" />
-          <span className="display text-xl text-gradient-gold tracking-wider hidden sm:inline">
-            {SITE.brandName.toUpperCase()}
+          <img
+            src={SITE.logoUrl}
+            alt=""
+            className="w-10 h-10 rounded-full object-cover ring-1 ring-primary/60"
+          />
+          <span className="display text-lg sm:text-xl text-gradient-gold tracking-wider">
+            {SITE.brandName}
           </span>
         </a>
         <a
           href={SITE.telegramUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold tracking-wider bg-accent text-accent-foreground hover:brightness-110 transition glow-crimson"
+          className="inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2 text-xs font-bold tracking-wider bg-primary text-primary-foreground hover:brightness-110 transition glow-gold"
         >
           <Send className="w-4 h-4" /> TELEGRAM
         </a>
@@ -98,64 +57,127 @@ function Header() {
   );
 }
 
-
-
-
 function Hero() {
   return (
-    <section id="top" className="px-4 sm:px-6 pt-10">
-      <div className="max-w-5xl mx-auto card-surface rounded-3xl overflow-hidden relative">
-        <div className="absolute inset-0 opacity-60 pointer-events-none"
-             style={{ background: "radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--primary) 30%, transparent), transparent 70%)" }} />
-        <div className="relative flex flex-col items-center text-center px-6 sm:px-12 py-16 sm:py-20">
+    <section id="top" className="relative px-4 sm:px-6 pt-12 sm:pt-20 pb-10">
+      <div className="absolute inset-0 pointer-events-none opacity-70"
+        style={{ background: "radial-gradient(50% 40% at 50% 30%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 70%)" }} />
+      <div className="relative max-w-3xl mx-auto flex flex-col items-center text-center">
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full blur-3xl opacity-60"
+            style={{ background: "var(--gradient-gold)" }} />
           <img
             src={SITE.logoUrl}
             alt={SITE.brandName}
-            className="w-44 h-44 sm:w-56 sm:h-56 rounded-full object-cover glow-gold ring-1 ring-primary/40"
+            className="relative w-56 h-56 sm:w-72 sm:h-72 rounded-full object-cover ring-2 ring-primary/60 glow-gold"
           />
-          <p className="display mt-8 text-3xl sm:text-4xl text-muted-foreground/60 leading-none">
-            {SITE.hero.overline.toUpperCase()}
-          </p>
-          <h1 className="display text-6xl sm:text-8xl leading-[0.95] text-gradient-gold mt-2">
-            {SITE.hero.title.toUpperCase()}
-          </h1>
-          <div className="mt-6 flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
-            <span className="h-px w-10 bg-primary/60" />
-            <span>Drop · Privato · 18+</span>
-            <span className="h-px w-10 bg-primary/60" />
-          </div>
-          <a
-            href="#catalogo"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-xs px-6 py-3.5 glow-gold hover:brightness-110 transition"
-          >
-            {SITE.hero.ctaLabel.toUpperCase()} <ArrowRight className="w-4 h-4" />
-          </a>
+        </div>
+        <h1 className="display mt-8 text-6xl sm:text-8xl leading-[0.95] text-gradient-gold">
+          {SITE.brandName}
+        </h1>
+        <p className="mt-6 text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground max-w-xl">
+          {SITE.tagline}
+        </p>
+        <div className="mt-6 flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-primary/80">
+          <span className="h-px w-10 bg-primary/60" />
+          <span>18+ · Solo membri</span>
+          <span className="h-px w-10 bg-primary/60" />
         </div>
       </div>
     </section>
   );
 }
 
-function Catalog() {
+function Categories() {
   return (
+    <section className="px-4 sm:px-6 py-10">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        {CATEGORIES.map((c) => <CategoryCard key={c.id} c={c} />)}
+      </div>
+    </section>
+  );
+}
 
-    <section id="catalogo" className="px-4 sm:px-6 py-16">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <p className="display text-3xl sm:text-4xl text-muted-foreground/50 leading-none">
-            {SITE.catalog.overline.toUpperCase()}
-          </p>
-          <h2 className="display text-5xl sm:text-6xl leading-none text-gradient-gold">
-            {SITE.catalog.title.toUpperCase()}
-          </h2>
-          <p className="mt-2 text-xs tracking-[0.3em] uppercase text-muted-foreground">
-            {SITE.catalog.subtitle}
-          </p>
+function CategoryCard({ c }: { c: Category }) {
+  const isGold = c.accent === "gold";
+  return (
+    <a
+      href={SITE.telegramUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="card-surface rounded-2xl p-8 text-center group transition hover:-translate-y-1"
+      style={{
+        boxShadow: isGold
+          ? "0 10px 60px -20px color-mix(in oklab, var(--primary) 70%, transparent)"
+          : "0 10px 60px -20px color-mix(in oklab, var(--accent) 60%, transparent)",
+        borderColor: isGold ? "color-mix(in oklab, var(--primary) 50%, transparent)" : "color-mix(in oklab, var(--accent) 45%, transparent)",
+      }}
+    >
+      <h3
+        className="display text-4xl sm:text-5xl"
+        style={{
+          color: isGold ? "var(--primary)" : "var(--accent)",
+          textShadow: `0 0 24px color-mix(in oklab, ${isGold ? "var(--primary)" : "var(--accent)"} 60%, transparent)`,
+        }}
+      >
+        {c.name}
+      </h3>
+      <p className="mt-3 text-xs sm:text-sm text-muted-foreground tracking-wide">
+        {c.description}
+      </p>
+    </a>
+  );
+}
+
+function DeliveryArea() {
+  return (
+    <section className="px-4 sm:px-6 py-16">
+      <div className="max-w-5xl mx-auto card-surface rounded-3xl p-8 sm:p-12 text-center">
+        <p className="display text-2xl sm:text-3xl text-muted-foreground/60">
+          Area Consegna
+        </p>
+        <h2 className="display text-4xl sm:text-6xl leading-none text-gradient-gold mt-2">
+          VOLIAMO IN TUTTA LA CAMPANIA
+        </h2>
+        <div className="mt-8 flex items-center justify-center">
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full blur-2xl opacity-50"
+              style={{ background: "var(--gradient-gold)" }} />
+            <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-full border border-primary/40 flex items-center justify-center"
+              style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%)" }}>
+              <MapPin className="w-20 h-20 text-primary" strokeWidth={1.5} />
+            </div>
+          </div>
         </div>
+        <p className="mt-6 text-xs tracking-[0.25em] uppercase text-muted-foreground">
+          Napoli · Caserta · Salerno · Avellino · Benevento
+        </p>
+      </div>
+    </section>
+  );
+}
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {PRODUCTS.map((p) => (
-            <ProductCard key={p.id} product={p} />
+function OrderInfo() {
+  const items = [
+    { icon: Clock, title: "Ordina entro 15:00", desc: "Per consegna in giornata, ordina entro le ore 15:00." },
+    { icon: Package, title: "Minimo ordine", desc: "In base alla distanza. Es: 10 km = 100€ spesa min." },
+    { icon: MapPin, title: "Peso + Zona", desc: "Servizio delivery calcolato in base a distanza, peso e rischio." },
+  ];
+  return (
+    <section className="px-4 sm:px-6 py-10">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="display text-3xl sm:text-4xl text-gradient-gold text-center mb-8">
+          ORGANIZZA QUI IL TUO DELIVERY
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {items.map((it) => (
+            <div key={it.title} className="card-surface rounded-2xl p-6 text-center">
+              <div className="w-12 h-12 mx-auto rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center">
+                <it.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="mt-4 display text-xl text-primary tracking-wider">{it.title}</h3>
+              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{it.desc}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -163,77 +185,26 @@ function Catalog() {
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
-  const [open, setOpen] = useState(false);
+function CTA() {
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="card-surface rounded-xl overflow-hidden group transition hover:-translate-y-1 hover:glow-gold text-left w-full"
-      >
-        <div className="relative aspect-square bg-muted">
-          {product.video ? (
-            <video src={product.video} className="w-full h-full object-cover" muted playsInline />
-          ) : (
-            <img
-              src={product.image}
-              alt={product.name}
-              loading="lazy"
-              className="w-full h-full object-cover"
-            />
-          )}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold group-hover:scale-110 transition">
-              <Play className="w-5 h-5 fill-current ml-0.5" />
-            </div>
-          </div>
-        </div>
-        <div className="p-3">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="text-sm font-bold truncate">{product.name}</h3>
-            <span className="text-primary font-bold text-sm">€{product.price}</span>
-          </div>
-          <p className="text-xs text-muted-foreground mt-0.5">{product.weight}</p>
-        </div>
-      </button>
-
-      {open && (
-        <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setOpen(false)}
+    <section className="px-4 sm:px-6 py-16">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="display text-3xl sm:text-5xl text-gradient-gold">
+          Pronto ad ordinare?
+        </h2>
+        <p className="mt-3 text-sm text-muted-foreground tracking-wide">
+          Scrivici subito su Telegram per il listino e la consegna.
+        </p>
+        <a
+          href={SITE.telegramUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-6 inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-bold tracking-[0.2em] bg-primary text-primary-foreground glow-gold hover:brightness-110 transition"
         >
-          <button
-            type="button"
-            aria-label="Chiudi"
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold"
-            onClick={() => setOpen(false)}
-          >
-            <X className="w-5 h-5" />
-          </button>
-          <div className="w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
-            {product.video ? (
-              <video
-                src={product.video}
-                className="w-full max-h-[80vh] rounded-xl"
-                controls
-                autoPlay
-                playsInline
-              />
-            ) : (
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full max-h-[80vh] object-contain rounded-xl"
-              />
-            )}
-            <p className="mt-3 text-center text-sm font-bold text-foreground">
-              {product.name} · €{product.price}
-            </p>
-          </div>
-        </div>
-      )}
-    </>
+          <Send className="w-4 h-4" /> @H4SHBOMB
+        </a>
+      </div>
+    </section>
   );
 }
 
@@ -242,36 +213,19 @@ function Footer() {
     <footer className="border-t border-border/60 mt-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         <img src={SITE.logoUrl} alt="" className="w-8 h-8 rounded-full object-cover" />
-        {/* 👉 MODIFICA QUI il testo del footer */}
         <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground text-center font-bold">
-          © {SITE.year} · PRODOTTI IMMAGINARI
+          © {SITE.year} {SITE.brandName} · Sito dimostrativo
         </p>
-        <div className="flex items-center gap-2">
-          {/* 👉 Social: solo Instagram */}
-          <a
-            href={SITE.instagramUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-            className="w-9 h-9 rounded-full text-white flex items-center justify-center hover:brightness-110 transition"
-            style={{ background: "linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4)" }}
-          >
-            <Instagram className="w-4 h-4" />
-          </a>
-        </div>
+        <a
+          href={SITE.telegramUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Telegram"
+          className="w-9 h-9 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold hover:brightness-110 transition"
+        >
+          <Send className="w-4 h-4" />
+        </a>
       </div>
     </footer>
-  );
-}
-
-function BackToTop() {
-  return (
-    <a
-      href="#top"
-      aria-label="Torna su"
-      className="fixed bottom-5 right-5 w-11 h-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold hover:brightness-110 transition"
-    >
-      <ArrowUp className="w-5 h-5" />
-    </a>
   );
 }
