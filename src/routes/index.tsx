@@ -58,9 +58,10 @@ function AgeGate() {
 
         <button
           onClick={onEnter}
-          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold hover:brightness-110 transition"
+          disabled={loading}
+          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold hover:brightness-110 transition disabled:opacity-60"
         >
-          {g.enterLabel.toUpperCase()}
+          {loading ? "..." : g.enterLabel.toUpperCase()}
         </button>
         <a
           href={g.exitUrl}
