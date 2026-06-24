@@ -1,7 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { Send, Instagram, ArrowRight, Play, ArrowUp, X } from "lucide-react";
 import { SITE, PRODUCTS, type Product } from "@/config/site";
+import { confirmAge, isAgeConfirmed } from "@/lib/age-gate.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -12,16 +14,29 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Collezione premium su invito. Solo membri 18+." },
     ],
   }),
+  loader: async () => await isAgeConfirmed(),
   component: Index,
 });
 
 function Index() {
-  const [entered, setEntered] = useState(false);
-  return entered ? <Shop /> : <AgeGate onEnter={() => setEntered(true)} />;
+  const { confirmed } = Route.useLoaderData();
+  return confirmed ? <Shop /> : <AgeGate />;
 }
 
 /* ------------------------------ AGE GATE ------------------------------ */
-function AgeGate({ onEnter }: { onEnter: () => void }) {
+function AgeGate() {
+  const router = useRouter();
+  const confirm = useServerFn(confirmAge);
+  const [loading, setLoading] = useState(false);
+  const onEnter = async () => {
+    setLoading(true);
+    try {
+      await confirm();
+      await router.invalidate();
+    } finally {
+      setLoading(false);
+    }
+  };
   const g = SITE.ageGate;
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12">
@@ -43,9 +58,10 @@ function AgeGate({ onEnter }: { onEnter: () => void }) {
 
         <button
           onClick={onEnter}
-          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold hover:brightness-110 transition"
+          disabled={loading}
+          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold hover:brightness-110 transition disabled:opacity-60"
         >
-          {g.enterLabel.toUpperCase()}
+          {loading ? "..." : g.enterLabel.toUpperCase()}
         </button>
         <a
           href={g.exitUrl}
