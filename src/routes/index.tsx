@@ -128,7 +128,7 @@ function Hero() {
           </div>
           <a
             href="#catalogo"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-xs px-6 py-3.5 glow-gold hover:brightness-110 transition"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-xs px-6 py-3.5 glow-gold cursor-pointer transition-transform duration-300 ease-out hover:scale-105 hover:brightness-110 active:scale-95"
           >
             {SITE.hero.ctaLabel.toUpperCase()} <ArrowRight className="w-4 h-4" />
           </a>
