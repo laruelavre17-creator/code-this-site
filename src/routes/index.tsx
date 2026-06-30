@@ -25,7 +25,8 @@ function AgeGate({ onEnter }: { onEnter: () => void }) {
   const g = SITE.ageGate;
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="card-surface ring-gold rounded-2xl w-full max-w-lg p-6 sm:p-8 text-center">
+      <div className="card-surface ring-gold rounded-2xl w-full max-w-lg p-6 sm:p-8 text-center animate-fade-in">
+
         <img
           src={SITE.logoUrl}
           alt={`${SITE.brandName} logo`}
@@ -43,13 +44,13 @@ function AgeGate({ onEnter }: { onEnter: () => void }) {
 
         <button
           onClick={onEnter}
-          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold hover:brightness-110 transition"
+          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold cursor-pointer transition-transform duration-300 ease-out hover:scale-[1.03] hover:brightness-110 active:scale-[0.98]"
         >
           {g.enterLabel.toUpperCase()}
         </button>
         <a
           href={g.exitUrl}
-          className="mt-3 block w-full rounded-full border border-destructive/50 text-destructive font-bold tracking-wider text-sm py-3 hover:bg-destructive/10 transition"
+          className="mt-3 block w-full rounded-full border border-destructive/50 text-destructive font-bold tracking-wider text-sm py-3 cursor-pointer transition-colors duration-300 hover:bg-destructive/10"
           style={{ boxShadow: "0 8px 30px -10px oklch(0.55 0.24 27 / 0.5)" }}
         >
           {g.exitLabel.toUpperCase()}
@@ -77,7 +78,7 @@ function Shop() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-md bg-background/60 border-b border-border/60">
+    <header className="sticky top-0 z-30 bg-background/85 border-b border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
           <img src={SITE.logoUrl} alt="" className="w-9 h-9 rounded-full object-cover ring-1 ring-primary/50" />
@@ -89,7 +90,7 @@ function Header() {
           href={SITE.telegramUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold tracking-wider bg-accent text-accent-foreground hover:brightness-110 transition glow-crimson"
+          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold tracking-wider bg-accent text-accent-foreground cursor-pointer transition-transform duration-300 hover:scale-105 hover:brightness-110 glow-crimson"
         >
           <Send className="w-4 h-4" /> TELEGRAM
         </a>
@@ -111,12 +112,13 @@ function Hero() {
           <img
             src={SITE.logoUrl}
             alt={SITE.brandName}
-            className="w-44 h-44 sm:w-56 sm:h-56 rounded-full object-cover glow-gold ring-1 ring-primary/40"
+            className="w-44 h-44 sm:w-56 sm:h-56 rounded-full object-cover glow-gold ring-1 ring-primary/40 animate-float"
           />
-          <p className="display mt-8 text-3xl sm:text-4xl text-muted-foreground/60 leading-none">
+          <p className="display mt-8 text-3xl sm:text-4xl text-muted-foreground/60 leading-none animate-fade-in">
             {SITE.hero.overline.toUpperCase()}
           </p>
-          <h1 className="display text-6xl sm:text-8xl leading-[0.95] text-gradient-gold mt-2">
+          <h1 className="display text-6xl sm:text-8xl leading-[0.95] text-gradient-gold mt-2 animate-fade-in">
+
             {SITE.hero.title.toUpperCase()}
           </h1>
           <div className="mt-6 flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
@@ -126,7 +128,7 @@ function Hero() {
           </div>
           <a
             href="#catalogo"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-xs px-6 py-3.5 glow-gold hover:brightness-110 transition"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-xs px-6 py-3.5 glow-gold cursor-pointer transition-transform duration-300 ease-out hover:scale-105 hover:brightness-110 active:scale-95"
           >
             {SITE.hero.ctaLabel.toUpperCase()} <ArrowRight className="w-4 h-4" />
           </a>
@@ -170,7 +172,7 @@ function ProductCard({ product }: { product: Product }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="card-surface rounded-xl overflow-hidden group transition hover:-translate-y-1 hover:glow-gold text-left w-full"
+        className="card-surface rounded-xl overflow-hidden group cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1.5 hover:glow-gold text-left w-full"
       >
         <div className="relative aspect-square bg-muted">
           {product.video ? (
@@ -184,7 +186,7 @@ function ProductCard({ product }: { product: Product }) {
             />
           )}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold group-hover:scale-110 transition">
+            <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold transition-transform duration-300 ease-out group-hover:scale-110">
               <Play className="w-5 h-5 fill-current ml-0.5" />
             </div>
           </div>
@@ -200,18 +202,18 @@ function ProductCard({ product }: { product: Product }) {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setOpen(false)}
         >
           <button
             type="button"
             aria-label="Chiudi"
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold cursor-pointer transition-transform duration-200 hover:scale-110"
             onClick={() => setOpen(false)}
           >
             <X className="w-5 h-5" />
           </button>
-          <div className="w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
+          <div className="w-full max-w-3xl animate-scale-in" onClick={(e) => e.stopPropagation()}>
             {product.video ? (
               <video
                 src={product.video}
@@ -269,7 +271,7 @@ function BackToTop() {
     <a
       href="#top"
       aria-label="Torna su"
-      className="fixed bottom-5 right-5 w-11 h-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold hover:brightness-110 transition"
+      className="fixed bottom-5 right-5 w-11 h-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold cursor-pointer transition-transform duration-300 hover:scale-110 hover:brightness-110"
     >
       <ArrowUp className="w-5 h-5" />
     </a>
