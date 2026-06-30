@@ -1,0 +1,16 @@
+# Dependencies
+node_modules
+
+# Build outputs
+.output
+dist
+
+# Dev / tooling
+.git
+.gitignore
+*.md
+
+# Local env files
+.env
+.env.*
+!.env.example
