@@ -8,7 +8,7 @@ export const SITE = {
   brandName: "Haze Bomb",
 
   // 👉 URL del logo (file in /public oppure URL esterno)
-  logoUrl: "/__l5e/assets-v1/5a30e238-39fb-4595-9952-81cc6ba043d5/haze-bomb-logo.jpg",
+  logoUrl: "https://images.unsplash.com/photo-1599599810694-b5ac4dd64b73?w=400&h=400&fit=crop",
 
   // 👉 Link social / contatto
   telegramUrl: "https://t.me/HazeBomb10",
@@ -20,7 +20,7 @@ export const SITE = {
     titleTop: "INGRESSO",
     titleBottom: "PRIVATO",
     description:
-      "⚠️ Attenzione ⚠️\n\nQuesto sito web è stato realizzato esclusivamente a scopo illustrativo, dimostrativo e di portfolio. Tutti i contenuti presenti, inclusi testi, immagini, video, marchi e prezzi, sono puramente fittizi e utilizzati unicamente per mostrare capacità tecniche, grafiche e di sviluppo web.\n\nNessun prodotto o servizio mostrato è realmente disponibile per la vendita o l'acquisto tramite questo sito. Qualsiasi riferimento a prodotti, offerte commerciali o prezzi è da considerarsi simulato e privo di validità commerciale.\n\nNon è possibile effettuare transazioni, ordini o pagamenti reali attraverso questa piattaforma. Questo progetto non rappresenta un'attività commerciale reale e non ha finalità di vendita.",
+      "⚠️ Attenzione ⚠️\\n\\nQuesto sito web è stato realizzato esclusivamente a scopo illustrativo, dimostrativo e di portfolio. Tutti i contenuti presenti, inclusi testi, immagini, video, marchi e prezzi, sono puramente fittizi e utilizzati unicamente per mostrare capacità tecniche, grafiche e di sviluppo web.\\n\\nNessun prodotto o servizio mostrato è realmente disponibile per la vendita o l'acquisto tramite questo sito. Qualsiasi riferimento a prodotti, offerte commerciali o prezzi è da considerarsi simulato e privo di validità commerciale.\\n\\nNon è possibile effettuare transazioni, ordini o pagamenti reali attraverso questa piattaforma. Questo progetto non rappresenta un'attività commerciale reale e non ha finalità di vendita.",
     enterLabel: "Entra nello Shop",
     exitLabel: "Annulla",
     exitUrl: "https://www.google.com/",
@@ -87,3 +87,4 @@ export const PRODUCTS: Product[] = [
     image: "https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=600",
   },
 ];
+
