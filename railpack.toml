@@ -1,0 +1,4 @@
+[deploy]
+buildCommand = "bun run build"
+startCommand = "node .output/server/index.mjs"
+port = 3000
