@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Send, Instagram, ArrowRight, Play, ArrowUp, X } from "lucide-react";
 import { SITE, PRODUCTS, type Product } from "@/config/site";
+import CreditCountdown from "@/components/CreditCountdown";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -70,6 +71,7 @@ function Shop() {
         <Hero />
         <Catalog />
       </main>
+      <CreditCountdown />
       <Footer />
       <BackToTop />
     </div>
