@@ -202,18 +202,18 @@ function ProductCard({ product }: { product: Product }) {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setOpen(false)}
         >
           <button
             type="button"
             aria-label="Chiudi"
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold cursor-pointer transition-transform duration-200 hover:scale-110"
             onClick={() => setOpen(false)}
           >
             <X className="w-5 h-5" />
           </button>
-          <div className="w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
+          <div className="w-full max-w-3xl animate-scale-in" onClick={(e) => e.stopPropagation()}>
             {product.video ? (
               <video
                 src={product.video}
