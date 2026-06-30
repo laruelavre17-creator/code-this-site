@@ -43,13 +43,13 @@ function AgeGate({ onEnter }: { onEnter: () => void }) {
 
         <button
           onClick={onEnter}
-          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold hover:brightness-110 transition"
+          className="mt-7 w-full rounded-full bg-primary text-primary-foreground font-bold tracking-wider text-sm py-3.5 glow-gold cursor-pointer transition-transform duration-300 ease-out hover:scale-[1.03] hover:brightness-110 active:scale-[0.98]"
         >
           {g.enterLabel.toUpperCase()}
         </button>
         <a
           href={g.exitUrl}
-          className="mt-3 block w-full rounded-full border border-destructive/50 text-destructive font-bold tracking-wider text-sm py-3 hover:bg-destructive/10 transition"
+          className="mt-3 block w-full rounded-full border border-destructive/50 text-destructive font-bold tracking-wider text-sm py-3 cursor-pointer transition-colors duration-300 hover:bg-destructive/10"
           style={{ boxShadow: "0 8px 30px -10px oklch(0.55 0.24 27 / 0.5)" }}
         >
           {g.exitLabel.toUpperCase()}
