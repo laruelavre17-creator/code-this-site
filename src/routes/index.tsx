@@ -90,7 +90,7 @@ function Header() {
           href={SITE.telegramUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold tracking-wider bg-accent text-accent-foreground hover:brightness-110 transition glow-crimson"
+          className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold tracking-wider bg-accent text-accent-foreground cursor-pointer transition-transform duration-300 hover:scale-105 hover:brightness-110 glow-crimson"
         >
           <Send className="w-4 h-4" /> TELEGRAM
         </a>
