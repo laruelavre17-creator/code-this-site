@@ -172,7 +172,7 @@ function ProductCard({ product }: { product: Product }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="card-surface rounded-xl overflow-hidden group transition hover:-translate-y-1 hover:glow-gold text-left w-full"
+        className="card-surface rounded-xl overflow-hidden group cursor-pointer transition-all duration-300 ease-out hover:-translate-y-1.5 hover:glow-gold text-left w-full"
       >
         <div className="relative aspect-square bg-muted">
           {product.video ? (
