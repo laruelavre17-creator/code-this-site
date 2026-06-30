@@ -1,0 +1,6 @@
+[build]
+cmd = "bun run build"
+
+[start]
+cmd = "node .output/server/index.mjs"
+
