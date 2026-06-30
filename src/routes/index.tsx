@@ -112,12 +112,13 @@ function Hero() {
           <img
             src={SITE.logoUrl}
             alt={SITE.brandName}
-            className="w-44 h-44 sm:w-56 sm:h-56 rounded-full object-cover glow-gold ring-1 ring-primary/40"
+            className="w-44 h-44 sm:w-56 sm:h-56 rounded-full object-cover glow-gold ring-1 ring-primary/40 animate-float"
           />
-          <p className="display mt-8 text-3xl sm:text-4xl text-muted-foreground/60 leading-none">
+          <p className="display mt-8 text-3xl sm:text-4xl text-muted-foreground/60 leading-none animate-fade-in">
             {SITE.hero.overline.toUpperCase()}
           </p>
-          <h1 className="display text-6xl sm:text-8xl leading-[0.95] text-gradient-gold mt-2">
+          <h1 className="display text-6xl sm:text-8xl leading-[0.95] text-gradient-gold mt-2 animate-fade-in">
+
             {SITE.hero.title.toUpperCase()}
           </h1>
           <div className="mt-6 flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
