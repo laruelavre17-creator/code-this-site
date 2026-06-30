@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Override the default cloudflare target so the build outputs a Node.js
+    // server to .output/server/index.mjs, which Railway can run directly.
+    preset: "node-server",
+  },
 });
