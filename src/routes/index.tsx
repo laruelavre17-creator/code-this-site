@@ -71,6 +71,7 @@ function Shop() {
         <Hero />
         <Catalog />
       </main>
+      <CreditCountdown />
       <Footer />
       <BackToTop />
     </div>
