@@ -78,7 +78,7 @@ function Shop() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-md bg-background/60 border-b border-border/60">
+    <header className="sticky top-0 z-30 bg-background/85 border-b border-border/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
           <img src={SITE.logoUrl} alt="" className="w-9 h-9 rounded-full object-cover ring-1 ring-primary/50" />
