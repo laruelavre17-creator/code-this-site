@@ -25,7 +25,8 @@ function AgeGate({ onEnter }: { onEnter: () => void }) {
   const g = SITE.ageGate;
   return (
     <main className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="card-surface ring-gold rounded-2xl w-full max-w-lg p-6 sm:p-8 text-center">
+      <div className="card-surface ring-gold rounded-2xl w-full max-w-lg p-6 sm:p-8 text-center animate-fade-in">
+
         <img
           src={SITE.logoUrl}
           alt={`${SITE.brandName} logo`}
