@@ -186,7 +186,7 @@ function ProductCard({ product }: { product: Product }) {
             />
           )}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold group-hover:scale-110 transition">
+            <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold transition-transform duration-300 ease-out group-hover:scale-110">
               <Play className="w-5 h-5 fill-current ml-0.5" />
             </div>
           </div>
