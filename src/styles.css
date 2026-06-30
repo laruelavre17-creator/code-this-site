@@ -163,7 +163,6 @@
   .card-surface {
     background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, transparent), color-mix(in oklab, var(--card) 70%, transparent));
     border: 1px solid color-mix(in oklab, var(--primary) 18%, transparent);
-    backdrop-filter: blur(6px);
   }
 }
 
