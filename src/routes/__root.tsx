@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { SITE } from "../config/site";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -83,9 +84,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "H4SH BOMB" },
       { property: "og:description", content: "H4SH BOMB — Prodotti impeccabili, selezionati con cura. Consegna in tutta Italia." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: `${SITE.logoUrl}` },
+      { property: "og:image:alt", content: "H4SH BOMB logo" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "H4SH BOMB" },
       { name: "twitter:description", content: "H4SH BOMB — Prodotti impeccabili, selezionati con cura. Consegna in tutta Italia." },
+      { name: "twitter:image", content: `${SITE.logoUrl}` },
+      { name: "twitter:image:alt", content: "H4SH BOMB logo" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
