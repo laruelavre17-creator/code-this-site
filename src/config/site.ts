@@ -1,7 +1,8 @@
 import logoAsset from "@/assets/h4sh-bomb-logo.jpg.asset.json";
-import mousseVideo from "@/assets/mousse.mp4.asset.json";
-import ferrariVideo from "@/assets/ferrari.mp4.asset.json";
-import lamborghiniVideo from "@/assets/lamborghini.mp4.asset.json";
+
+const mousseVideoUrl = "/mousse.mp4";
+const ferrariVideoUrl = "/ferrari.mp4";
+const lamborghiniVideoUrl = "/lamborghini.mp4";
 
 export const SITE = {
   brandName: "H4SH BOMB",
@@ -52,21 +53,21 @@ export const CATEGORIES: Category[] = [
     accent: "gold",
     products: [
       {
-        id: "lamborghini",
+        id: "dry-premium-farm-lamborghini",
         name: "DRY PREMIUM FARM LAMBORGHINI",
-        video: lamborghiniVideo.url,
+        video: lamborghiniVideoUrl,
         tiers: TIERS_A,
       },
       {
-        id: "ferrari",
+        id: "dry-premium-farm-ferrari",
         name: "DRY PREMIUM FARM FERRARI",
-        video: ferrariVideo.url,
+        video: ferrariVideoUrl,
         tiers: TIERS_A,
       },
       {
         id: "mousse-2026",
         name: "MOUSSE 2026",
-        video: mousseVideo.url,
+        video: mousseVideoUrl,
         tiers: TIERS_MOUSSE,
       },
     ],
