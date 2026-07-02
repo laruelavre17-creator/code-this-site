@@ -1,12 +1,11 @@
-import logoAsset from "@/assets/h4sh-bomb-logo.jpg.asset.json";
-
 const mousseVideoUrl = "/mousse.mp4";
 const ferrariVideoUrl = "/ferrari.mp4";
 const lamborghiniVideoUrl = "/lamborghini.mp4";
+const logoUrl = "/logo.jpg";
 
 export const SITE = {
   brandName: "H4SH BOMB",
-  logoUrl: logoAsset.url,
+  logoUrl: logoUrl,
   telegramUrl: "https://t.me/H4SHBOMB",
   reviewsUrl: "https://t.me/+kMGEzX7AEApjYTI0",
   tagline: "Qualità premium · Spedizione discreta · Prezzi imbattibili",
