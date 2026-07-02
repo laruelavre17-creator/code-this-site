@@ -13,3 +13,12 @@ export default defineConfig({
     server: { entry: "server" },
   },
 });
+export default defineConfig({
+  tanstackStart: {
+    server: { entry: "server" },
+
+    nitro: {
+      preset: "node-server"
+    }
+  }
+});
