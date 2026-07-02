@@ -1,9 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Play, Send } from "lucide-react";
 import { useRef, useState } from "react";
-import { SITE } from "@/config/site";
-import { getCategory, type Product } from "@/config/site";
-import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { SITE, getCategory, type Product } from "@/config/site";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 
