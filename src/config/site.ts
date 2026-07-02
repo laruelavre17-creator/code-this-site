@@ -1,4 +1,7 @@
 import logoAsset from "@/assets/h4sh-bomb-logo.jpg.asset.json";
+import mousseVideo from "@/assets/mousse.mp4.asset.json";
+import ferrariVideo from "@/assets/ferrari.mp4.asset.json";
+import lamborghiniVideo from "@/assets/lamborghini.mp4.asset.json";
 
 export const SITE = {
   brandName: "H4SH BOMB",
@@ -9,52 +12,66 @@ export const SITE = {
   year: 2026,
 };
 
+export type PriceTier = { weight: string; price: number };
+
 export type Product = {
   id: string;
   name: string;
-  weight: string;
-  price: number;
+  video?: string;
   image?: string;
+  tiers: PriceTier[];
 };
 
 export type Category = {
-  id: "hash" | "weed";
+  id: "hash";
   name: string;
   description: string;
   accent: "gold" | "ember";
   products: Product[];
 };
 
+const TIERS_A: PriceTier[] = [
+  { weight: "50 g", price: 200 },
+  { weight: "100 g", price: 350 },
+  { weight: "500 g", price: 1450 },
+  { weight: "1 kg", price: 2800 },
+];
+
+const TIERS_MOUSSE: PriceTier[] = [
+  { weight: "50 g", price: 150 },
+  { weight: "100 g", price: 250 },
+  { weight: "500 g", price: 1400 },
+  { weight: "1 kg", price: 2200 },
+];
+
 export const CATEGORIES: Category[] = [
   {
     id: "hash",
     name: "HASH",
-    description: "Hash tradizionale da tutto il mondo",
+    description: "Prodotti impeccabili, selezionati con cura personalmente.",
     accent: "gold",
     products: [
-      { id: "super-boof", name: "SUPER BOOF 🎁", weight: "5 g", price: 45, image: "https://images.unsplash.com/photo-1603909223429-69bb7101f420?w=600" },
-      { id: "moroccan-gold", name: "MOROCCAN GOLD 🇲🇦", weight: "5 g", price: 40, image: "https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=600" },
-      { id: "ketama", name: "KETAMA HASH", weight: "5 g", price: 35, image: "https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600" },
-      { id: "afghan-black", name: "AFGHAN BLACK 🇦🇫", weight: "5 g", price: 50, image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600" },
-      { id: "lebanese-red", name: "LEBANESE RED 🇱🇧", weight: "5 g", price: 55, image: "https://images.unsplash.com/photo-1611237104477-39ea49b21c1f?w=600" },
-      { id: "bubble-hash", name: "BUBBLE HASH 💧", weight: "3 g", price: 60, image: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=600" },
-    ],
-  },
-  {
-    id: "weed",
-    name: "WEED",
-    description: "Selezione premium di fiori top-shelf",
-    accent: "ember",
-    products: [
-      { id: "gelato", name: "GELATO 🍨", weight: "3 g", price: 40, image: "https://images.unsplash.com/photo-1603909223358-72ebf94a23fc?w=600" },
-      { id: "purple-haze", name: "PURPLE HAZE 💜", weight: "3 g", price: 45, image: "https://images.unsplash.com/photo-1536819114556-1e10f967fb61?w=600" },
-      { id: "og-kush", name: "OG KUSH 🇺🇸", weight: "3 g", price: 42, image: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?w=600" },
-      { id: "amnesia", name: "AMNESIA HAZE", weight: "3 g", price: 38, image: "https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600" },
-      { id: "white-widow", name: "WHITE WIDOW ❄️", weight: "3 g", price: 40, image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600" },
-      { id: "zkittlez", name: "ZKITTLEZ 🌈", weight: "3 g", price: 48, image: "https://images.unsplash.com/photo-1611237104477-39ea49b21c1f?w=600" },
+      {
+        id: "lamborghini",
+        name: "DRY PREMIUM FARM LAMBORGHINI",
+        video: lamborghiniVideo.url,
+        tiers: TIERS_A,
+      },
+      {
+        id: "ferrari",
+        name: "DRY PREMIUM FARM FERRARI",
+        video: ferrariVideo.url,
+        tiers: TIERS_A,
+      },
+      {
+        id: "mousse-2026",
+        name: "MOUSSE 2026",
+        video: mousseVideo.url,
+        tiers: TIERS_MOUSSE,
+      },
     ],
   },
 ];
 
-export const getCategory = (id: "hash" | "weed") =>
+export const getCategory = (id: "hash") =>
   CATEGORIES.find((c) => c.id === id)!;
