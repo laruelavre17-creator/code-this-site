@@ -66,7 +66,7 @@ function Hero() {
 function Categories() {
   return (
     <section className="px-4 sm:px-6 py-10">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+      <div className="max-w-xl mx-auto grid grid-cols-1 gap-4 sm:gap-6">
         {CATEGORIES.map((c) => <CategoryCard key={c.id} c={c} />)}
       </div>
     </section>

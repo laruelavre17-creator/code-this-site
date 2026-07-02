@@ -5,13 +5,12 @@ import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 
 export const Route = createFileRoute("/categoria/$category")({
   beforeLoad: ({ params }) => {
-    if (params.category !== "hash" && params.category !== "weed") {
+    if (params.category !== "hash") {
       throw notFound();
     }
   },
   head: ({ params }) => {
-    const id = params.category as "hash" | "weed";
-    const c = id === "hash" || id === "weed" ? getCategory(id) : null;
+    const c = params.category === "hash" ? getCategory("hash") : null;
     const title = c ? `${c.name} — ${SITE.brandName}` : SITE.brandName;
     const desc = c?.description ?? SITE.tagline;
     return {
@@ -27,10 +26,8 @@ export const Route = createFileRoute("/categoria/$category")({
 });
 
 function CategoryPage() {
-  const { category } = Route.useParams();
-  const c = getCategory(category as "hash" | "weed");
-  const isGold = c.accent === "gold";
-  const color = isGold ? "var(--primary)" : "var(--accent)";
+  const c = getCategory("hash");
+  const color = "var(--primary)";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -62,7 +59,7 @@ function CategoryPage() {
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {c.products.map((p) => (
               <ProductCard key={p.id} product={p} accent={color} />
             ))}
@@ -90,9 +87,18 @@ function CategoryPage() {
 
 function ProductCard({ product, accent }: { product: Product; accent: string }) {
   return (
-    <div className="card-surface rounded-xl overflow-hidden group transition hover:-translate-y-1">
+    <div className="card-surface rounded-2xl overflow-hidden group transition hover:-translate-y-1">
       <div className="relative aspect-square bg-muted">
-        {product.image ? (
+        {product.video ? (
+          <video
+            src={product.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        ) : product.image ? (
           <img
             src={product.image}
             alt={product.name}
@@ -103,14 +109,18 @@ function ProductCard({ product, accent }: { product: Product; accent: string }) 
           <div className="w-full h-full" style={{ background: "var(--gradient-gold)" }} />
         )}
       </div>
-      <div className="p-3">
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="text-sm font-bold truncate">{product.name}</h3>
-          <span className="font-bold text-sm" style={{ color: accent }}>
-            €{product.price}
-          </span>
-        </div>
-        <p className="text-xs text-muted-foreground mt-0.5">{product.weight}</p>
+      <div className="p-5">
+        <h3 className="text-base font-bold tracking-wide" style={{ color: accent }}>
+          {product.name}
+        </h3>
+        <ul className="mt-3 divide-y divide-border/60">
+          {product.tiers.map((t) => (
+            <li key={t.weight} className="flex items-center justify-between py-2 text-sm">
+              <span className="text-muted-foreground tracking-wide">{t.weight}</span>
+              <span className="font-bold" style={{ color: accent }}>€{t.price}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
