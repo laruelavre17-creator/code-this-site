@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Send } from "lucide-react";
+import { ArrowLeft, Play, Send } from "lucide-react";
+import { useRef, useState } from "react";
 import { SITE, getCategory, type Product } from "@/config/site";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 
@@ -86,18 +87,65 @@ function CategoryPage() {
 }
 
 function ProductCard({ product, accent }: { product: Product; accent: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    setPlaying(true);
+    // wait for the video element to mount, then play
+    setTimeout(() => videoRef.current?.play().catch(() => {}), 0);
+  };
+
   return (
     <div className="card-surface rounded-2xl overflow-hidden group transition hover:-translate-y-1">
       <div className="relative aspect-square bg-muted">
         {product.video ? (
-          <video
-            src={product.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
+          <>
+            {playing ? (
+              <video
+                ref={videoRef}
+                src={product.video}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-cover bg-black"
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={handlePlay}
+                aria-label={`Riproduci video ${product.name}`}
+                className="relative w-full h-full flex items-center justify-center overflow-hidden group/play"
+                style={{
+                  background:
+                    "radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primary) 30%, transparent), transparent 60%), radial-gradient(circle at 70% 70%, color-mix(in oklab, var(--accent) 35%, transparent), transparent 60%), #0a0a12",
+                }}
+              >
+                {/* preview poster: first frame via <video preload=metadata> */}
+                <video
+                  src={product.video}
+                  preload="metadata"
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover opacity-70"
+                />
+                <div className="absolute inset-0 bg-black/40" />
+                <div
+                  className="relative z-10 flex flex-col items-center gap-3 text-center px-4 transition group-hover/play:scale-105"
+                >
+                  <span
+                    className="w-16 h-16 rounded-full flex items-center justify-center glow-gold"
+                    style={{ background: "var(--primary)" }}
+                  >
+                    <Play className="w-7 h-7 ml-1" style={{ color: "var(--primary-foreground)" }} fill="currentColor" />
+                  </span>
+                  <span className="text-[11px] tracking-[0.3em] uppercase font-bold text-white/90">
+                    Clicca per riprodurre
+                  </span>
+                </div>
+              </button>
+            )}
+          </>
         ) : product.image ? (
           <img
             src={product.image}
